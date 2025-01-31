@@ -1,11 +1,9 @@
 from datetime import datetime
 
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from social_core.exceptions import AuthException
 
-from apps.profiles.models import Profile
-from FreeVet import settings
+from SocialRegistration import settings
 
 from .utils import generate_token_and_redirect
 
@@ -49,10 +47,6 @@ def create_user(strategy, details, backend, user=None, *args, **kwargs):
             user = User(**fields)
             user.save()
 
-            Profile.objects.create(
-                user=user, name=first_name, last_name=last_name, email=email, created_at=timezone.now()
-            )
-
         elif provider == "facebook":
 
             username = kwargs.get("username", email.split("@")[0])
@@ -69,9 +63,5 @@ def create_user(strategy, details, backend, user=None, *args, **kwargs):
 
             user = User(**fields)
             user.save()
-
-            Profile.objects.create(
-                user=user, name=first_name, last_name=last_name, email=email, created_at=timezone.now()
-            )
 
     return generate_token_and_redirect(user, redirect_url=f"{settings.BASE_URL}/main/")
