@@ -64,4 +64,4 @@ def create_user(strategy, details, backend, user=None, *args, **kwargs):
             user = User(**fields)
             user.save()
 
-    return generate_token_and_redirect(user, redirect_url=f"{settings.BASE_URL}/main/")
+    return generate_token_and_redirect(user, redirect_url=f"{settings.BASE_URL}/api/auth/registration_completed")

@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenRefreshView
 
+from .render_view import registration_completed
 from .social_view import facebook_oauth_redirect, google_oauth_redirect
 
 urlpatterns = [
@@ -14,4 +15,5 @@ urlpatterns = [
     path(
         "v1/authentication/facebook/", facebook_oauth_redirect, name="facebook-login-shortcut"
     ),  # регистрация и авторизация facebook
+    path("registration_completed", registration_completed, name="registration_completed"),
 ]
