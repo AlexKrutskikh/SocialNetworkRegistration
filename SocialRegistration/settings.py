@@ -109,7 +109,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-AUTH_USER_MODEL = 'social_auth.User'
+AUTH_USER_MODEL = 'SocialNetwork_auth.User'
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
